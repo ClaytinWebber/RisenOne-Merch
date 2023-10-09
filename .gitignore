@@ -1,0 +1,9 @@
+frontend/.angular
+node_modules
+.serverless
+.idea
+.vscode
+.github/workflows/actions.yml
+
+# macOS
+.DS_Store

@@ -1,0 +1,111 @@
+service: aws-serverless-demo
+frameworkVersion: '3'
+
+custom:
+  jobsTableName: '${self:service}-jobs-table-${sls:stage}'
+
+provider:
+  httpApi:
+    cors: true
+  name: aws
+  runtime: nodejs14.x
+  stage: ${opt:stage, 'dev'}
+  region: us-east-1
+  profile: serverless # You'll have to create your own profile with IAM creds to your AWS account
+  iam: # Role is applied globally to all functions below allowing access to dynamodb table JobsTable
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - dynamodb:Scan
+          Resource:
+            - Fn::GetAtt: [ JobsTable, Arn ]
+
+functions:
+  hello:
+    handler: helloWorld.handler
+    events:
+      - httpApi:
+          path: /hello
+          method: get
+  listItems:
+    handler: listItems.listItems
+    events:
+      - httpApi:
+          path: /board/{model}
+          method: get
+    environment:
+      JOBS_TABLE: ${self:custom.jobsTableName}
+
+  getItem:
+    handler: getItem.getItem
+    events:
+      - httpApi:
+          path: /board/{model}/{id}
+          method: get
+    environment:
+      JOBS_TABLE: ${self:custom.jobsTableName}
+    role: dynamoRole
+
+  createJob:
+    handler: createJob.createJob
+    events:
+      - httpApi:
+          path: /jobs
+          method: post
+    environment:
+      JOBS_TABLE: ${self:custom.jobsTableName}
+    role: dynamoRole
+
+resources:
+  Resources:
+    dynamoRole:
+      Type: AWS::IAM::Role
+      Properties:
+        RoleName: DynamoRole
+        AssumeRolePolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Principal:
+                Service:
+                  - lambda.amazonaws.com
+              Action: sts:AssumeRole
+        Policies:
+          - PolicyName: dynamoPolicy
+            PolicyDocument:
+              Version: '2012-10-17'
+              Statement:
+                - Effect: Allow # note that these rights are given in the default policy and are required if you want logs out of your lambda(s)
+                  Action:
+                    - logs:CreateLogGroup
+                    - logs:CreateLogStream
+                    - logs:PutLogEvents
+                  Resource:
+                    - 'Fn::Join':
+                        - ':'
+                        - - 'arn:aws:logs'
+                          - Ref: 'AWS::Region'
+                          - Ref: 'AWS::AccountId'
+                          - 'log-group:/aws/lambda/*:*:*'
+                - Effect: Allow
+                  Action:
+                    - dynamodb:Query
+                    - dynamodb:Scan
+                    - dynamodb:GetItem
+                    - dynamodb:PutItem
+                    - dynamodb:UpdateItem
+                    - dynamodb:DeleteItem
+                  Resource:
+                    - Fn::GetAtt: [JobsTable, Arn]
+    JobsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+        TableName: ${self:custom.jobsTableName}
