@@ -1,0 +1,92 @@
+
+.merchandise-section {
+    
+    margin: 90px;
+    right: 20px;
+    background-color: #FBC900;
+    margin-left: 150px;
+    margin-right: 0px;
+  }
+  
+  .far-left-section {
+    position: fixed;
+    top: 80px;
+    left: 0;
+    width: 250px;
+    height: 100vh;
+    background-color: black;
+    z-index: 6;
+    align-items: center;
+
+  }
+  
+  .far-left-section h1 {
+    font-size: 24px;
+    font-family: Montserrat Bold;
+    padding: 10px;
+    color: white
+  }
+  
+  .far-left-section p {
+    padding: 10px;
+    color: white;
+  }
+  
+  .far-left-section button {
+    background-color: #FBC900;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+    font: Montserrat Bold;
+  }
+  
+  .merchandise-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: white;
+    margin: 60px;
+    margin-right: 100px;
+    border-radius: 50px;
+  
+  }
+
+  .merchandise-items h1{
+    margin-left: 40px;
+  }
+
+  .merchandise-item {
+    width: 150px;
+    margin: 100px;
+    margin-left: 60px;
+    margin-right: 100px;
+  
+  }
+  
+  .merchandise-item img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+  }
+
+
+  .merchandise-item h3 {
+    font-size: 18px;
+  }
+  
+  .merchandise-item p {
+    font-size: 14px;
+  }
+  
+  .merchandise-item span {
+    font-size: 12px;
+    color: gray;
+  }
+  
+  .merchandise-item button {
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+  }
+
+  
