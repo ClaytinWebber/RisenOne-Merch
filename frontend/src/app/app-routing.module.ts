@@ -9,10 +9,10 @@ import { AddMerchComponent } from './components/addmerch/addmerch';
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
- // { path: 'admin', component: AdminComponent },
+ //{ path: 'admin', component: AdminComponent },
   { path: 'buymerch', component: BuymerchComponent },
   {path: 'addmerch', component: AddMerchComponent},
-  { path: 'submit', component: SubmitComponent },
+  //{ path: 'submit', component: SubmitComponent },
   { path: '**', redirectTo: '' }
 ];
 
