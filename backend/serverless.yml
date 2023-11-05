@@ -1,8 +1,11 @@
+org: nickw3
+app: risenone-merch
 service: aws-serverless-demo
 frameworkVersion: '3'
 
 custom:
   jobsTableName: '${self:service}-jobs-table-${sls:stage}'
+  ordersTableName: '${self:service}-orders-table-${sls:stage}'
 
 provider:
   httpApi:
@@ -57,6 +60,16 @@ functions:
       JOBS_TABLE: ${self:custom.jobsTableName}
     role: dynamoRole
 
+  createOrder:
+    handler: createOrder.createOrder
+    events:
+      - httpApi:
+          path: /orders
+          method: post
+    environment:
+      JOBS_TABLE: ${self:custom.ordersTableName}
+    role: dynamoRole
+
 resources:
   Resources:
     dynamoRole:
@@ -109,3 +122,14 @@ resources:
             KeyType: HASH
         BillingMode: PAY_PER_REQUEST
         TableName: ${self:custom.jobsTableName}
+    OrdersTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+        TableName: ${self:custom.ordersTableName}
