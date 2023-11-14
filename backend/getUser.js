@@ -3,9 +3,9 @@
 const AWS = require('aws-sdk');
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
 
-const itemsTable = process.env.ITEMS_TABLE; //Grab the table name from env variables defined in serverless.yml
+const usersTable = process.env.USERS_TABLE; //Grab the table name from env variables defined in serverless.yml
 
-exports.getItem = async (event, context, callback) => {
+exports.getUser = async (event, context, callback) => {
     let headers = {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Credentials': true
@@ -18,8 +18,8 @@ exports.getItem = async (event, context, callback) => {
     const id = event.pathParameters.id;
     let table;
     switch (tableName) { //If you have other tables you would add them here as other case statements to reference that table.
-        case "items":
-            table = itemsTable;
+        case "users":
+            table = usersTable;
             break;
         default:
             throw new Error(`Unsupported resource: "${modelName}"`);
@@ -32,7 +32,7 @@ exports.getItem = async (event, context, callback) => {
         }
     }
 
-    console.log("Getting Items from table:::", table);
+    console.log("Getting users from table:::", table);
 
     await dynamoDb.get(params, (error, data) => {
         if (error) {

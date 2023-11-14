@@ -20,7 +20,7 @@ exports.createJob = async (event, context, callback) => {
     let m = addZero(d.getMinutes());
     let ts = h + ':' + m;
     //create new date value
-    let MM = addZero(d.getMonth()+1);
+    let MM = addZero(d.getMonth() + 1);
     let dd = addZero(d.getDate());
     let y = d.getFullYear();
     let dt = y + '/' + MM + '/' + dd;
@@ -41,20 +41,20 @@ exports.createJob = async (event, context, callback) => {
 
     console.log("Creating Job");
 
-    try{
+    try {
         await dynamoDb.put(params).promise()
             .then(res => {
                 callback(null, {
                     statusCode,
                     headers,
-                    body: JSON.stringify({message: 'Created Job Successfully!'})
+                    body: JSON.stringify({ message: 'Created Job Successfully!' })
                 });
             }).catch(err => {
                 console.log(err);
                 callback(null, {
                     statusCode: 500,
                     headers,
-                    body: JSON.stringify({message: 'Unable to Create Job'})
+                    body: JSON.stringify({ message: 'Unable to Create Job' })
                 });
             });
     } catch (err) {
@@ -64,7 +64,7 @@ exports.createJob = async (event, context, callback) => {
 
 
 function addZero(i) {
-    if (i<10) {
+    if (i < 10) {
         i = '0' + i;
     }
     return i;
