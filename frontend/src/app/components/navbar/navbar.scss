@@ -1,0 +1,29 @@
+.black-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 90px;
+    background-color: black;
+    color: white;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .black-bar img {
+    width: 150px;
+    height: 150px;
+    margin:10px;
+  }
+  
+  .black-bar h1 {
+    font-size: 24px;
+    margin: 0;
+  }
+  
+  .black-bar i {
+    font-size: 24px;
+    margin: 0 10px;
+  }
