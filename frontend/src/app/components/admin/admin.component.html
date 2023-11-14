@@ -1,0 +1,31 @@
+<div class="container">
+  <mat-card>
+    <h1>Create New Job</h1>
+    <form [formGroup]="jobForm" *ngIf="hasLoaded">
+      <mat-form-field>
+        <mat-label>Title</mat-label>
+        <input matInput formControlName="title" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Location</mat-label>
+        <input matInput formControlName="location" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Level</mat-label>
+        <input matInput formControlName="level" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description"></textarea>
+      </mat-form-field>
+      <button
+        mat-raised-button
+        color="primary"
+        [disabled]="!jobForm.valid"
+        (click)="submit()"
+      >
+        Submit
+      </button>
+    </form>
+  </mat-card>
+</div>
