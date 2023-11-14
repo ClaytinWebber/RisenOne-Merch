@@ -50,6 +50,16 @@ functions:
       JOBS_TABLE: ${self:custom.jobsTableName}
     role: dynamoRole
 
+  getOrder:
+    handler: getOrder.getOrder
+    events:
+      - httpApi:
+          path: /order/{model}/{id}
+          method: get
+    environment:
+      ORDERS_TABLE: ${self:custom.ordersTableName}
+    role: dynamoRole
+
   createJob:
     handler: createJob.createJob
     events:
@@ -67,7 +77,7 @@ functions:
           path: /orders
           method: post
     environment:
-      JOBS_TABLE: ${self:custom.ordersTableName}
+      ORDERS_TABLE: ${self:custom.ordersTableName}
     role: dynamoRole
 
 resources:
@@ -110,7 +120,7 @@ resources:
                     - dynamodb:UpdateItem
                     - dynamodb:DeleteItem
                   Resource:
-                    - Fn::GetAtt: [JobsTable, Arn]
+                    - Fn::GetAtt: [OrdersTable, Arn]
     JobsTable:
       Type: AWS::DynamoDB::Table
       Properties:

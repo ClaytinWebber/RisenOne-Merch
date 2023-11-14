@@ -4,7 +4,7 @@ const AWS = require('aws-sdk');
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
 const uuid = require('uuid');
 
-exports.createJob = async (event, context, callback) => {
+exports.createOrder = async (event, context, callback) => {
     let headers = {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Credentials': true
@@ -15,6 +15,7 @@ exports.createJob = async (event, context, callback) => {
     console.log("EVENT:::", data);
 
     //create new date value
+    let d = new Date();
     let MM = addZero(d.getMonth()+1);
     let dd = addZero(d.getDate());
     let y = d.getFullYear();
@@ -28,7 +29,7 @@ exports.createJob = async (event, context, callback) => {
             name: data.name,
             address: data.address,
             items: data.items,
-            orderDate: dt,
+            orderDate: dt
         }
     }
 
@@ -40,14 +41,14 @@ exports.createJob = async (event, context, callback) => {
                 callback(null, {
                     statusCode,
                     headers,
-                    body: JSON.stringify({message: 'Created Job Successfully!'})
+                    body: JSON.stringify({message: 'Created Order Successfully!'})
                 });
             }).catch(err => {
                 console.log(err);
                 callback(null, {
                     statusCode: 500,
                     headers,
-                    body: JSON.stringify({message: 'Unable to Create Job'})
+                    body: JSON.stringify({message: 'Unable to Create Order'})
                 });
             });
     } catch (err) {
