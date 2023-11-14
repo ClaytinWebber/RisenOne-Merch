@@ -1,11 +1,9 @@
 
 .merchandise-section {
-    
-    margin: 90px;
-    right: 20px;
     background-color: #FBC900;
     margin-left: 150px;
-    margin-right: 0px;
+    padding: 60px;
+    //padding-right: 60px;
   }
   
   .far-left-section {
@@ -45,9 +43,10 @@
     flex-wrap: wrap;
     justify-content: space-between;
     background-color: white;
-    margin: 60px;
-    margin-right: 100px;
+    // margin: 60px;
+    // margin-right: 100px;
     border-radius: 50px;
+    padding: 40px;
   
   }
 
