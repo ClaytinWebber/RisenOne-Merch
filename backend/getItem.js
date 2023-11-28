@@ -3,7 +3,7 @@
 const AWS = require('aws-sdk');
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
 
-const jobsTable = process.env.JOBS_TABLE; //Grab the table name from env variables defined in serverless.yml
+const itemsTable = process.env.ITEMS_TABLE; //Grab the table name from env variables defined in serverless.yml
 
 exports.getItem = async (event, context, callback) => {
     let headers = {
@@ -18,8 +18,8 @@ exports.getItem = async (event, context, callback) => {
     const id = event.pathParameters.id;
     let table;
     switch (tableName) { //If you have other tables you would add them here as other case statements to reference that table.
-        case "jobs":
-            table = jobsTable;
+        case "items":
+            table = itemsTable;
             break;
         default:
             throw new Error(`Unsupported resource: "${modelName}"`);

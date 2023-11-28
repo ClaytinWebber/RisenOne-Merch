@@ -1,11 +1,13 @@
-org: nickw3
-app: risenone-merch
+org: {your serverless org}
+app: {your app}
 service: aws-serverless-demo
 frameworkVersion: '3'
 
 custom:
   jobsTableName: '${self:service}-jobs-table-${sls:stage}'
   ordersTableName: '${self:service}-orders-table-${sls:stage}'
+  itemsTableName: '${self:service}-items-table-${sls:stage}'
+  usersTableName: '${self:service}-users-table-${sls:stage}'
 
 provider:
   httpApi:
@@ -22,7 +24,10 @@ provider:
           Action:
             - dynamodb:Scan
           Resource:
-            - Fn::GetAtt: [ JobsTable, Arn ]
+            - Fn::GetAtt: [JobsTable, Arn]
+            - Fn::GetAtt: [OrdersTable, Arn]
+            - Fn::GetAtt: [ItemsTable, Arn]
+            - Fn::GetAtt: [UsersTable, Arn]
 
 functions:
   hello:
@@ -38,7 +43,7 @@ functions:
           path: /board/{model}
           method: get
     environment:
-      JOBS_TABLE: ${self:custom.jobsTableName}
+      ITEMS_TABLE: ${self:custom.itemsTableName}
 
   getItem:
     handler: getItem.getItem
@@ -47,7 +52,57 @@ functions:
           path: /board/{model}/{id}
           method: get
     environment:
-      JOBS_TABLE: ${self:custom.jobsTableName}
+      ITEMS_TABLE: ${self:custom.itemsTableName}
+    role: dynamoRole
+
+  createItem:
+    handler: createItem.createItem
+    events:
+      - httpApi:
+          path: /items
+          method: post
+    environment:
+      ITEMS_TABLE: ${self:custom.itemsTableName}
+    role: dynamoRole
+
+  getUser:
+    handler: getUser.getUser
+    events:
+      - httpApi:
+          path: /user/{model}/{id}
+          method: get
+    environment:
+      USERS_TABLE: ${self:custom.usersTableName}
+    role: dynamoRole
+
+  createUser:
+    handler: createUser.createUser
+    events:
+      - httpApi:
+          path: /user
+          method: post
+    environment:
+      USERS_TABLE: ${self:custom.usersTableName}
+    role: dynamoRole
+
+  getOrder:
+    handler: getOrder.getOrder
+    events:
+      - httpApi:
+          path: /order/{model}/{id}
+          method: get
+    environment:
+      ORDERS_TABLE: ${self:custom.ordersTableName}
+    role: dynamoRole
+
+  createOrder:
+    handler: createOrder.createOrder
+    events:
+      - httpApi:
+          path: /orders
+          method: post
+    environment:
+      ORDERS_TABLE: ${self:custom.ordersTableName}
     role: dynamoRole
 
   getOrder:
@@ -120,7 +175,10 @@ resources:
                     - dynamodb:UpdateItem
                     - dynamodb:DeleteItem
                   Resource:
+                    - Fn::GetAtt: [JobsTable, Arn]
                     - Fn::GetAtt: [OrdersTable, Arn]
+                    - Fn::GetAtt: [ItemsTable, Arn]
+                    - Fn::GetAtt: [UsersTable, Arn]
     JobsTable:
       Type: AWS::DynamoDB::Table
       Properties:
@@ -132,6 +190,7 @@ resources:
             KeyType: HASH
         BillingMode: PAY_PER_REQUEST
         TableName: ${self:custom.jobsTableName}
+
     OrdersTable:
       Type: AWS::DynamoDB::Table
       Properties:
@@ -143,3 +202,27 @@ resources:
             KeyType: HASH
         BillingMode: PAY_PER_REQUEST
         TableName: ${self:custom.ordersTableName}
+
+    ItemsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+        TableName: ${self:custom.itemsTableName}
+
+    UsersTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+        TableName: ${self:custom.usersTableName}
