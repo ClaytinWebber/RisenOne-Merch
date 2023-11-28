@@ -17,7 +17,11 @@ import { AppHeaderComponent } from './components/app-header/app-header.component
 import { AppFooterComponent } from './components/app-footer/app-footer.component';
 import { HomeComponent } from './components/home/home.component';
 import { JobBoardComponent } from './components/job-board/job-board.component';
-import { AdminComponent } from './components/admin/admin.component';
+//import { AdminComponent } from './components/admin/admin.component';
+import { BuymerchComponent } from './components/buymerch/buymerch';
+import { SubmitComponent } from './components/submit/submit';
+import { NavComponent } from './components/navbar/navbar';
+import { AddMerchComponent } from './components/addmerch/addmerch';
 
 @NgModule({
   declarations: [
@@ -26,8 +30,12 @@ import { AdminComponent } from './components/admin/admin.component';
     AppFooterComponent,
     HomeComponent,
     JobBoardComponent,
-    AdminComponent,
+    //AdminComponent,
     JobDetailModalComponent,
+    BuymerchComponent,
+    AddMerchComponent,
+    NavComponent,
+    SubmitComponent
   ],
   imports: [
     BrowserModule,
