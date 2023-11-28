@@ -3,7 +3,7 @@
 const AWS = require('aws-sdk');
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
 
-const jobsTable = process.env.JOBS_TABLE;
+const itemsTable = process.env.ITEMS_TABLE;
 
 exports.listItems = async (event, context, callback) => {
     let headers = {
@@ -17,8 +17,8 @@ exports.listItems = async (event, context, callback) => {
     const tableName = event.pathParameters.model
     let table;
     switch (tableName) {
-        case "jobs":
-            table = jobsTable;
+        case "items":
+            table = itemsTable;
             break;
         default:
             throw new Error(`Unsupported resource: "${modelName}"`);
