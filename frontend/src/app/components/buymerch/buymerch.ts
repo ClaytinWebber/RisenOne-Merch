@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
-
+import { MatDialog } from '@angular/material/dialog';
+import { SubmitComponent } from 'src/app/components/buymerch/submit/submit';
 
 @Component({
   selector: 'app-buymerch',
@@ -15,7 +16,8 @@ export class BuymerchComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private apiService: ApiService,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog
   ) {}
 
   user = {
@@ -53,7 +55,15 @@ export class BuymerchComponent implements OnInit {
   showSubmitOrderPopup = false;
   totalPoints = 0;
 
-
+  openSubmitModal() {
+    console.log('MODAL OPENED ');
+    const dialogRef = this.dialog.open(SubmitComponent, {
+      width: '80vw',
+      data: {
+        title: 'Job Details'
+      },
+    });
+  }
 
   ngOnInit(): void {
     this.calculateTotalPoints();

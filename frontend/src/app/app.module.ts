@@ -15,7 +15,7 @@ import { AppComponent } from './app.component';
 
 import { JobBoardComponent } from './components/job-board/job-board.component';
 import { BuymerchComponent } from './components/buymerch/buymerch';
-import { SubmitComponent } from './components/submit/submit';
+import { SubmitComponent } from './components/buymerch/submit/submit';
 import { NavComponent } from './components/navbar/navbar';
 import { AddMerchComponent } from './components/addmerch/addmerch';
 
