@@ -1,18 +1,18 @@
 
-
 <div class="merchandise-section">
     <div class="far-left-section">
-      <h1>User: {{ user.name }}</h1>
-      <p>Points remaining: {{ user.pointsRemaining }}</p>
-      <p>Total redeemed: {{ this }}</p>
-      <p>Items selected: {{ this }}</p>
+      <h1><br><br>{{ user.name }}</h1>
+      <p>Points remaining<br> {{ user.pointsRemaining }}</p>
+      <p>Total redeemed<br> {{ user.totalRedeemed }}</p>
+      <p>Items selected: {{ user.itemsSelected }}</p>
       <p>Total points: {{ totalPoints }}</p>
       <button type="button" (click)="showSubmitOrderPopup = true">Submit order</button>
     </div>
 
 <div class="merchandise-section">
-  <div class="merchandise-items">
+  <div class="merchandise-white">
     <h1>Merchandise</h1>
+  <div class="merchandise-items">
     <div class="merchandise-item" *ngFor="let item of merchandiseItems">
       <img src="{{ item.image }}" alt="{{ item.name }}">
       <h3>{{ item.name }}</h3>
@@ -35,4 +35,5 @@
     </div>
   </div>
  </div>
+</div>
 </div>

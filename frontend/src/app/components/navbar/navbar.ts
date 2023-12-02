@@ -1,18 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.html',
   styleUrls: ['./navbar.scss']
 })
-export class NavComponent {
-  blackBarOpen = false;
+export class NavComponent implements OnInit{
+  isOpen: boolean = false;
 
-  openBlackBar() {
-    this.blackBarOpen = true;
-  }
+  constructor() { }
 
-  closeBlackBar() {
-    this.blackBarOpen = false;
+  ngOnInit(): void { }
+
+  toggleHamburger() {
+    this.isOpen = !this.isOpen;
   }
 }

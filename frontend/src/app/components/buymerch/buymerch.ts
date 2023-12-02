@@ -59,7 +59,7 @@ export class BuymerchComponent implements OnInit {
     this.calculateTotalPoints();
   }
 
-  submitOrder() {
+  submitOrder() { 
     this.showSubmitOrderPopup = true;
   }
 
