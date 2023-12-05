@@ -60,7 +60,7 @@ export class BuymerchComponent implements OnInit {
     const dialogRef = this.dialog.open(SubmitComponent, {
       width: '80vw',
       data: {
-        title: 'Job Details'
+        title: 'Submit Order'
       },
     });
   }

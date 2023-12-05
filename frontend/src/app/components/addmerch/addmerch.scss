@@ -26,6 +26,28 @@
     text-align: center;
   }
 
+  .add-form {
+    display: flex;
+    //flex-wrap: wrap;
+    text-align: left;
+    justify-content: space-evenly;
+    padding: 50px;
+  }
+
+  .addmerch-box{
+    display: inline-flex;
+    flex-wrap: wrap;
+    width: 150px;
+    padding: 10px;
+    margin: auto;
+    text-align: left;
+    justify-content: space-around;
+  }
+
+  .addmerch-box input{
+    width: 100px;
+  }
+
   h1{
     font-size: 50px;
     text-align: center;

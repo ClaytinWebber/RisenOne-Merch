@@ -1,45 +1,45 @@
 <h1 mat-dialog-title></h1>
 <div mat-dialog-content>
-  <form>
+  <form [formGroup]="submitForm" *ngIf="hasLoaded">
     <div class="form-group">
-      <label for="recipient-name">Recipient name</label>
-      <input type="text" class="form-control" id="recipient-name" />
+      <mat-label for="recipient-name">Recipient name</mat-label>
+      <input matInput formControlName="name" />
     </div>
     <div class="form-group">
-      <label for="street-address">Street address</label>
-      <input type="text" class="form-control" id="street-address" />
+      <mat-label for="street-address">Street address</mat-label>
+      <input matInput formControlName="address1" />
     </div>
     <div class="form-group">
-      <label for="address-line-2">Address line 2</label>
-      <input type="text" class="form-control" id="address-line-2" />
+      <mat-label for="address-line-2">Address line 2</mat-label>
+      <input matInput formControlName="address2" />
     </div>
     <div class="form-group">
-      <label for="city">City</label>
-      <input type="text" class="form-control" id="city" />
+      <mat-label for="city">City</mat-label>
+      <input matInput formControlName="city" />
     </div>
     <div class="form-group">
-      <label for="state">State</label>
-      <input type="text" class="form-control" id="state" />
+      <mat-label for="state">State</mat-label>
+      <input matInput formControlName="state" />
     </div>
     <div class="form-group">
-      <label for="zip-code">Zip code</label>
-      <input type="text" class="form-control" id="zip-code" />
+      <mat-label for="zip-code">Zip code</mat-label>
+      <input matInput formControlName="zip" />
     </div>
+    <button
+        mat-raised-button
+        color="primary"
+        [disabled]="!submitForm.valid"
+        (click)="submit()"
+      >
+        Submit
+    </button>
     <div class="order-details">
       <h3>Order details</h3>
       <ul>
         <li *ngFor="let item of merchandiseItems">
-          {{ item.name }} - {{ item.quantity }}
+          <!-- {{ item.name }} - {{ item.quantity }} -->
         </li>
       </ul>
-    </div>
-    <div class="popup-footer">
-      <button type="button" class="btn btn-secondary" (click)="closeSubmitOrderPopup()">
-        Cancel
-      </button>
-      <button type="button" class="btn btn-primary" (click)="submitOrder()">
-        Submit order
-      </button>
     </div>
   </form>
 </div>

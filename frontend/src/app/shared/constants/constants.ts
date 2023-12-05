@@ -5,5 +5,8 @@ export class Constants {
 
   public static APIS = {
     JOBS: '/board/jobs',
+    BUY: '/orders',
+    ADD: '/items',
+    ORDER: '/orders',
   };
 }

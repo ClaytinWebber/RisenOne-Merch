@@ -10,6 +10,8 @@ import { Job } from "../models/job";
 export class ApiService {
   private baseUrl = environment.apiUrl;
   private jobUrl = this.baseUrl + Constants.APIS.JOBS;
+  private itemUrl = this.baseUrl + Constants.APIS.ADD;
+  private orderUrl = this.baseUrl + Constants.APIS.ORDER;
   private adminJobUrl = this.baseUrl + Constants.ADMIN_ROUTES.JOBS;
 
   constructor(private http: HttpClient) {}
@@ -24,6 +26,14 @@ export class ApiService {
 
   addJob(requestParams: any) {
     return this.http.post<any>(this.adminJobUrl, requestParams);
+  }
+
+  addItem(requestParams: any) {
+    return this.http.post<any>(this.itemUrl, requestParams);
+  }
+
+  addOrder(requestParams: any) {
+    return this.http.post<any>(this.orderUrl, requestParams);
   }
 
 }

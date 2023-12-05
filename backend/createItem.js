@@ -46,7 +46,7 @@ exports.createItem = async (event, context, callback) => {
             points: data.points,
             size_options: data.size_options,
             color_options: data.color_options,
-            quantity: data.quantity,
+            image: data.image,
             createdDate: dt,
             createdTimestamp: ts
         }

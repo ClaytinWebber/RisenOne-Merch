@@ -1,5 +1,5 @@
-org: {your serverless org}
-app: {your app}
+org: nickw3
+app: risenone-merch
 service: aws-serverless-demo
 frameworkVersion: '3'
 
@@ -105,16 +105,6 @@ functions:
       ORDERS_TABLE: ${self:custom.ordersTableName}
     role: dynamoRole
 
-  getOrder:
-    handler: getOrder.getOrder
-    events:
-      - httpApi:
-          path: /order/{model}/{id}
-          method: get
-    environment:
-      ORDERS_TABLE: ${self:custom.ordersTableName}
-    role: dynamoRole
-
   createJob:
     handler: createJob.createJob
     events:
@@ -123,16 +113,6 @@ functions:
           method: post
     environment:
       JOBS_TABLE: ${self:custom.jobsTableName}
-    role: dynamoRole
-
-  createOrder:
-    handler: createOrder.createOrder
-    events:
-      - httpApi:
-          path: /orders
-          method: post
-    environment:
-      ORDERS_TABLE: ${self:custom.ordersTableName}
     role: dynamoRole
 
 resources:
