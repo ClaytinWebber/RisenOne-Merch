@@ -2,8 +2,8 @@
 <div class="merchandise-section">
     <div class="far-left-section">
       <h1><br><br>{{ user.name }}</h1>
-      <p>Points remaining<br> {{ user.pointsRemaining }}</p>
-      <p>Total redeemed<br> {{ user.totalRedeemed }}</p>
+      <p>Points remaining<br> {{ user.points }}</p>
+      <p>Total redeemed<br> {{ user.total_points_redeemed }}</p>
       <p>Items selected: {{ user.itemsSelected }}</p>
       <p>Total points: {{ totalPoints }}</p>
       <button type="button" (click)="openSubmitModal()">Submit order</button>
@@ -13,7 +13,7 @@
   <div class="merchandise-white">
     <h1>Merchandise</h1>
   <div class="merchandise-items">
-    <div class="merchandise-item" *ngFor="let item of merchandiseItems">
+    <div class="merchandise-item" *ngFor="let item of items">
       <img src="{{ item.image }}" alt="{{ item.name }}">
       <h3>{{ item.name }}</h3>
       <p>{{ item.description }}</p>
@@ -26,13 +26,13 @@
       </select>
       <input type="number" value="1" min="1" max="100" class="quantity-slider">
     </div>
-    <div class="merchandise-item" *ngFor="let item of merchandiseItems">
+    <!--<div class="merchandise-item" *ngFor="let item of items">
       <img src="{{ item.image }}" alt="{{ item.name }}">
       <h3>{{ item.name }}</h3>
       <p>{{ item.description }}</p>
       <span>{{ item.points }} points</span>
       <input type="number" value="1" min="1" max="100" class="quantity-slider">
-    </div>
+    </div> -->
   </div>
  </div>
 </div>

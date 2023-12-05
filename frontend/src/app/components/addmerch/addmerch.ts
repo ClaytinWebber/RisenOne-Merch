@@ -51,7 +51,6 @@ export class AddMerchComponent implements OnInit{
   postItem(itemData: any) {
     this.apiService.addItem(itemData).subscribe({
       next: () => {
-        window.location.reload();
         this.router.navigate(['/buymerch']);
       },
       error: () => {

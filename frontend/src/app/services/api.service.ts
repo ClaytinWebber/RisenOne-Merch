@@ -12,6 +12,8 @@ export class ApiService {
   private jobUrl = this.baseUrl + Constants.APIS.JOBS;
   private itemUrl = this.baseUrl + Constants.APIS.ADD;
   private orderUrl = this.baseUrl + Constants.APIS.ORDER;
+  private itemsUrl = this.baseUrl + Constants.APIS.ITEMS;
+  private userUrl = this.baseUrl + Constants.APIS.USER;
   private adminJobUrl = this.baseUrl + Constants.ADMIN_ROUTES.JOBS;
 
   constructor(private http: HttpClient) {}
@@ -34,6 +36,14 @@ export class ApiService {
 
   addOrder(requestParams: any) {
     return this.http.post<any>(this.orderUrl, requestParams);
+  }
+
+  getItems() {
+    return this.http.get<any>(this.itemsUrl);
+  }
+
+  getUser(id: any) {
+    return this.http.get<any>(this.userUrl + '/' + id);
   }
 
 }

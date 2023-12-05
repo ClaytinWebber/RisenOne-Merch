@@ -8,5 +8,7 @@ export class Constants {
     BUY: '/orders',
     ADD: '/items',
     ORDER: '/orders',
+    ITEMS: '/board/items',
+    USER: '/user/users',
   };
 }

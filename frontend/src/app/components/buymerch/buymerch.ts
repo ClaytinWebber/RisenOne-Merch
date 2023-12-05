@@ -13,22 +13,28 @@ import { SubmitComponent } from 'src/app/components/buymerch/submit/submit';
 
 export class BuymerchComponent implements OnInit {
 
+  items: any[] = [];
+  response: any[] = [];
+  id = "d4afe5b0-939d-11ee-ac4e-a78b6cd274b5";
+
   constructor(
     private formBuilder: FormBuilder,
-    private apiService: ApiService,
+    private api: ApiService,
     private router: Router,
     public dialog: MatDialog
   ) {}
 
+
+
   user = {
-    name: 'John Doe',
-    pointsRemaining: 100,
-    totalRedeemed: 0,
-    itemsSelected: 0,
-    totalPoints: 0,
+    name: "",
+    points: "",
+    total_points_redeemed: "",
+    itemsSelected: "",
+    totalPoints: "",
   };
 
-  merchandiseItems = [
+  /*merchandiseItems = [
     {
       id: 1,
       name: 'T-shirt',
@@ -50,10 +56,33 @@ export class BuymerchComponent implements OnInit {
       points: 25,
       image: 'https://angular.io/assets/images/logos/angular/angular.svg'
     }
-  ];
+  ];*/
 
   showSubmitOrderPopup = false;
   totalPoints = 0;
+
+  getItems() {
+    this.api.getItems().subscribe((res: any) => {
+      console.log(res);
+      this.items = res.filter((item: any) => {
+        console.log(item);
+        return (
+          item.name.toLowerCase() &&
+          item.points
+        );
+      });
+    });
+  }
+
+  getUser() {
+    this.api.getUser(this.id).subscribe((res: any) => {
+      console.log(res);
+      this.user.name = res.name;
+      this.user.points = res.points;
+      this.user.total_points_redeemed = res.points;
+      this.user.itemsSelected = res.password;
+    });
+  };
 
   openSubmitModal() {
     console.log('MODAL OPENED ');
@@ -67,6 +96,8 @@ export class BuymerchComponent implements OnInit {
 
   ngOnInit(): void {
     this.calculateTotalPoints();
+    this.getItems();
+    this.getUser();
   }
 
   submitOrder() { 
@@ -79,7 +110,7 @@ export class BuymerchComponent implements OnInit {
 
   calculateTotalPoints() {
     this.totalPoints = 0;
-    for (const item of this.merchandiseItems) {
+    for (const item of this.items) {
       this.totalPoints += item.points;
     }
   }

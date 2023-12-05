@@ -43,6 +43,7 @@ exports.createItem = async (event, context, callback) => {
         Item: {
             id: uuid.v1(),
             name: data.name,
+            description: data.description,
             points: data.points,
             size_options: data.size_options,
             color_options: data.color_options,
