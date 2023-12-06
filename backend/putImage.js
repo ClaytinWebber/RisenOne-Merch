@@ -11,6 +11,8 @@ exports.putImage = async (event, context, callback) => {
     };
     let statusCode = 200;
 
+    const file = "C:\Users\nickw\OneDrive\Desktop\risenoneimages\blackhoodie.jpg"
+
     const region = "us-east-1"
     const bucketName = "risen-one-merch-images"
     //const accessKeyId = "AKIA2L6QSTXS3OZDX3WW"
@@ -21,6 +23,7 @@ exports.putImage = async (event, context, callback) => {
     })
 
     const data = event.body;
+    const thing = JSON.parse(event.body);
 
     //create new date value
     let d = new Date();
@@ -31,14 +34,13 @@ exports.putImage = async (event, context, callback) => {
 
     const params = ({
         Bucket: bucketName,
-        Key: "randomname",
-        Expires: 60
+        Key: "sticker.jpg",
+        Expires: 60,
     })
     
 
-    //const uploadURL = await s3.getSignedUrlPromise('putObject', params)
-    //console.log(uploadURL);
-    const uploadURL = "https://risen-one-merch-images.s3.amazonaws.com/randomname"
+    const uploadURL = await s3.getSignedUrlPromise('putObject', params)
+
 
     try{
         await fetch(uploadURL, {
@@ -46,10 +48,10 @@ exports.putImage = async (event, context, callback) => {
             headers: {
                 "Content-Type": "multipart/form-data"
             },
-            body: this.data
+            body: data
         })
     } catch (err) {
-        return { error: err }
+        return { error: thing }
     }
 };
 

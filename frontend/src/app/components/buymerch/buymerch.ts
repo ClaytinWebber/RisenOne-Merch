@@ -34,30 +34,6 @@ export class BuymerchComponent implements OnInit {
     totalPoints: "",
   };
 
-  /*merchandiseItems = [
-    {
-      id: 1,
-      name: 'T-shirt',
-      description: 'A comfortable t-shirt with the Angular logo',
-      points: 50,
-      image: 'https://angular.io/assets/images/logos/angular/angular.svg'
-    },
-    {
-      id: 2,
-      name: 'Hoodie',
-      description: 'A warm hoodie with the Angular logo',
-      points: 100,
-      image: 'https://angular.io/assets/images/logos/angular/angular.svg'
-    },
-    {
-      id: 3,
-      name: 'Mug',
-      description: 'A mug with the Angular logo',
-      points: 25,
-      image: 'https://angular.io/assets/images/logos/angular/angular.svg'
-    }
-  ];*/
-
   showSubmitOrderPopup = false;
   totalPoints = 0;
 

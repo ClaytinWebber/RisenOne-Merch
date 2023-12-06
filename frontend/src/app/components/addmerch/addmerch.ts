@@ -44,7 +44,7 @@ export class AddMerchComponent implements OnInit{
       points: this.itemForm.get('points').value,
       sizes: this.itemForm.get('sizes').value,
       colors: this.itemForm.get('colors').value,
-      image: "https://risen-one-merch-images.s3.amazonaws.com/blackhoodie.jpg"
+      image: "https://risen-one-merch-images.s3.amazonaws.com/thermos.jpg"
     };
     console.log(data);
     this.postItem(data);

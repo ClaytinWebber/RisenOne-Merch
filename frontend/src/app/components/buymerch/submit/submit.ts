@@ -21,7 +21,7 @@ export class SubmitComponent implements OnInit {
     private router: Router
   ) {}
 
-  merchandiseItems = [
+  items = [
     {
       id: 1,
       name: 'T-shirt',
@@ -70,7 +70,7 @@ export class SubmitComponent implements OnInit {
       + " " + this.submitForm.get('city').value
       + " " + this.submitForm.get('state').value
       + " " + this.submitForm.get('zip').value,
-      items: this.merchandiseItems,
+      items: this.items,
     };
     this.postOrder(data);
   }
