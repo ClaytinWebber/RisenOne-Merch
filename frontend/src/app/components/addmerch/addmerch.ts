@@ -27,6 +27,7 @@ export class AddMerchComponent implements OnInit{
   initForm() {
     this.itemForm = this.formBuilder.group({
       name: ['', [Validators.required]],
+      description: ['', [Validators.required]],
       points: ['', [Validators.required]],
       sizes: ['',],
       colors: ['',],
@@ -39,10 +40,11 @@ export class AddMerchComponent implements OnInit{
   submit() {
     const data = {
       name: this.itemForm.get('name').value,
+      description: this.itemForm.get('description').value,
       points: this.itemForm.get('points').value,
       sizes: this.itemForm.get('sizes').value,
       colors: this.itemForm.get('colors').value,
-      image: this.itemForm.get('image').value,
+      image: "https://risen-one-merch-images.s3.amazonaws.com/blackhoodie.jpg"
     };
     console.log(data);
     this.postItem(data);
@@ -58,6 +60,8 @@ export class AddMerchComponent implements OnInit{
       },
     });
   }
+
+  
 
   onSubmit(form: NgForm) {
     console.log(form.value);

@@ -21,7 +21,7 @@ exports.listItems = async (event, context, callback) => {
             table = itemsTable;
             break;
         default:
-            throw new Error(`Unsupported resource: "${modelName}"`);
+            throw new Error(`Unsupported resource: "${tableName}"`);
     }
 
     const params = {

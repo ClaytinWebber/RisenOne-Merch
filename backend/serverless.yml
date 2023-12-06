@@ -75,6 +75,14 @@ functions:
       USERS_TABLE: ${self:custom.usersTableName}
     role: dynamoRole
 
+  putImage:
+    handler: putImage.putImage
+    events:
+      - httpApi:
+          path: /putImage
+          method: put
+    role: dynamoRole
+
   createUser:
     handler: createUser.createUser
     events:
@@ -159,6 +167,7 @@ resources:
                     - Fn::GetAtt: [OrdersTable, Arn]
                     - Fn::GetAtt: [ItemsTable, Arn]
                     - Fn::GetAtt: [UsersTable, Arn]
+
     JobsTable:
       Type: AWS::DynamoDB::Table
       Properties:

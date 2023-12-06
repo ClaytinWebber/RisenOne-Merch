@@ -2,32 +2,29 @@
 <div class="addmerch-section">
   <div class="addmerch-white">
   <div class="addmerch-details">
-    <h1>Add Merchant</h1>
+    <h1>Add Merchandise</h1>
     <form [formGroup]="itemForm" *ngIf="hasLoaded" class="add-form">
-      <mat-form-field appearance="outline">
+      <mat-form-field appearance="outline" class="addmerch-block">
         <mat-label>Product Name</mat-label>
         <input matInput formControlName="name" />
       </mat-form-field>
-      <mat-form-field appearance="outline">
+      <mat-form-field appearance="outline" class="addmerch-block">
         <mat-label>Description</mat-label>
-        <input matInput formControlName="name" />
+        <input matInput formControlName="description" />
       </mat-form-field>
-      <mat-form-field appearance="outline">
+      <mat-form-field appearance="outline" class="addmerch-block">
         <mat-label>Points Cost</mat-label>
         <input matInput formControlName="points" />
       </mat-form-field>
-      <mat-form-field appearance="outline">
+      <mat-form-field appearance="outline" class="addmerch-block">
         <mat-label>Sizes</mat-label>
         <input matInput formControlName="sizes" />
       </mat-form-field>
-      <mat-form-field appearance="outline">
+      <mat-form-field appearance="outline" class="addmerch-block">
         <mat-label>Colors</mat-label>
         <input matInput formControlName="colors" />
       </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Image</mat-label>
-        <input matInput formControlName="image" />
-      </mat-form-field>
+      <input type="file" id="imageUpload" name="imageUpload" required>
       <button
         mat-raised-button
         color="primary"
